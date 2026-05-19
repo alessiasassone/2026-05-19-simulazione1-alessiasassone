@@ -5,5 +5,6 @@ class DAO():
     def __init__(self):
         pass
 
+
     def getAllGeneri(self):
         pass
