@@ -9,12 +9,18 @@ class Controller:
         self._model = model
 
     def fillDDGenre(self):
-        pass
+        for g in self._model.getAllGeneri():
+            self._view._ddGenre.options.append(ft.dropdown.Option(
+                key = g.GenreId,
+                text = g.Name,
+                on_click = self._choiceDDGenere
+            ))
 
-    def handleCreaGrafo(self, e):
-        pass
+    def _choiceDDGenere(self,e):
+        self._choiceGenere = e.control.data
+        print(f"Hai selezionato come genere {self._choiceGenere}")
 
-    def handleCreaGrafo(self,e):
+    def handleCreaGrafo(self, e, genere):
         pass
 
     def handleCammino(self,e):
