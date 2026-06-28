@@ -90,6 +90,7 @@ class Model:
 
         return bestArtist.Name, bestScore
 
+
     def getTop5Edges(self):
 
         edges = sorted(
