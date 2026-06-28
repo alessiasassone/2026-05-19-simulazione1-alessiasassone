@@ -11,7 +11,7 @@ class Controller:
     def fillDDGenre(self):
         for g in self._model.getAllGeneri():
             self._view._ddGenre.options.append(ft.dropdown.Option(
-                key = g.GenreId,
+                key = g.Name,
                 text = g.Name,
                 on_click = self._choiceDDGenere
             ))
@@ -19,8 +19,27 @@ class Controller:
     def _choiceDDGenere(self,e):
         self._choiceGenere = e.control.data
 
-    def handleCreaGrafo(self, e, genere):
-        pass
+    def handleCreaGrafo(self, e):
+        self._model.buildGraph(self._view._ddGenre.value)
+        # self.fillDDArtist()
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text("Grafo correttamente creato:"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero di nodi:{self._model.getNumNodi()}"))
+        self._view.txt_result.controls.append(ft.Text(f"Numero di archi:{self._model.getNumEdges()}"))
+
+        bestartist, best = self._model.getBestArtist()
+
+        self._view.txt_result.controls.append(ft.Text(f"Artista più influente: {bestartist}, con influenza: {best}"))
+
+        topEdges = self._model.getTop5Edges()
+
+        self._view.txt_result.controls.append(ft.Text("Top 5 archi:"))
+
+        for u, v, data in topEdges:
+            self._view.txt_result.controls.append(
+                ft.Text(f"{u.Name} -> {v.Name} : {data['weight']}"))
+
+        self._view.update_page()
 
     def handleCammino(self,e):
         pass
