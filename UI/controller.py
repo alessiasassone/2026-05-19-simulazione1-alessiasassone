@@ -18,7 +18,6 @@ class Controller:
 
     def _choiceDDGenere(self,e):
         self._choiceGenere = e.control.data
-        print(f"Hai selezionato come genere {self._choiceGenere}")
 
     def handleCreaGrafo(self, e, genere):
         pass
